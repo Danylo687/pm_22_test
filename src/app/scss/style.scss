@@ -1,0 +1,13 @@
+@use "for_all.scss";
+
+/* Ліва частина */
+@use "sidebar.scss";
+
+/* Контентна частина */
+@use "content_section.scss";
+
+/* Блоки інформації */
+@use "info.scss";
+
+/* Кола навичок */
+@use "skills.scss";
