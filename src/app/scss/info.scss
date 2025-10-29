@@ -5,7 +5,7 @@
 .contact-block p, .education-block p { font-size: 17px; margin: 0; }
 .experience-block p { color: #707070; font-size: 20px; margin-bottom: 1.5em; }
 .experience-block-time {
-  background: #ffca05; color: #fff; border-radius: 6px;
+  background: $yellow-color; color: $white-color; border-radius: 6px;
   padding: 2px 10px; font-size: 16px; display: inline-block;
 }
 .experience-about { margin-top: -1em; }

@@ -1,14 +1,14 @@
 /* Кола навичок */
 .skills { gap: 40px; justify-content: center; }
 .circle {
-  --size: 120px; --track: #f1f1f1; --fill: #ffca05; --percent: 75;
+  --size: 120px; --track: $white-color; --fill: $yellow-color; --percent: 75;
   width: var(--size); height: var(--size); border-radius: 50%;
   background: conic-gradient(from 90deg, var(--track) calc(100% - var(--percent) * 1%), var(--fill) 0);
   display: flex; justify-content: center; align-items: center; position: relative;
 }
 .circle::after {
   content: ""; position: absolute; width: calc(var(--size) - 20px);
-  height: calc(var(--size) - 20px); background: #fff; border-radius: 50%;
+  height: calc(var(--size) - 20px); background: $white-color; border-radius: 50%;
 }
 .circle span {
   position: relative; z-index: 1; text-align: center;
