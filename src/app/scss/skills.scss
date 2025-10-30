@@ -4,7 +4,7 @@
   --size: 120px; --track: $white-color; --fill: $yellow-color; --percent: 75;
   width: var(--size); height: var(--size); border-radius: 50%;
   background: conic-gradient(from 90deg, var(--track) calc(100% - var(--percent) * 1%), var(--fill) 0);
-  display: flex; justify-content: center; align-items: center; position: relative;
+  @include center-flex; position: relative;
 }
 .circle::after {
   content: ""; position: absolute; width: calc(var(--size) - 20px);

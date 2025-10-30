@@ -1,10 +1,20 @@
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: #22222d;
 }
 
-h1, h2, h3 {
+%base-heading {
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 3px;
+}
+
+h1, h2, h3 {
+  @extend %base-heading;
 }
