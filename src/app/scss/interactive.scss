@@ -1,0 +1,23 @@
+.toggle-header {
+  cursor: pointer; // Вказує, що елемент клікабельний
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // Стиль для стрілки
+  .toggle-arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.6em; // Робимо стрілку меншою за заголовок
+    color: #555;
+  }
+
+  // Клас, що обертає стрілку
+  .toggle-arrow.rotated {
+    transform: rotate(-90deg);
+  }
+}
+
+// Клас, що приховує контент
+.toggle-content.collapsed {
+  display: none;
+}
