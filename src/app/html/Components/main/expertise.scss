@@ -1,0 +1,22 @@
+@use "../../../scss/variables" as *;
+@use "../../../scss/mixin" as *;
+
+/* Кола навичок */
+.skills { gap: 40px; justify-content: center; }
+
+.circle {
+  --size: 120px; --track: #f1f1f1; --fill: #ffca05; --percent: 75;
+  width: var(--size); height: var(--size); border-radius: 50%;
+  background: conic-gradient(from 90deg, var(--track) calc(100% - var(--percent) * 1%), var(--fill) 0);
+  @include center-flex; position: relative;
+}
+
+.circle::after {
+  content: ""; position: absolute; width: calc(var(--size) - 20px);
+  height: calc(var(--size) - 20px); background: #f1f1f1; border-radius: 50%;
+}
+
+.circle span {
+  position: relative; z-index: 1; text-align: center;
+  font-size: 14px; font-weight: 500; width: 70%;
+}

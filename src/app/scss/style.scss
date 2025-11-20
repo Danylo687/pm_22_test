@@ -1,19 +1,12 @@
 @use "for_all.scss";
-
-$yellow-color: #ffca05;
-$white-color: #f1f1f1;
-
-/* Ліва частина */
-@use "sidebar.scss";
-
-/* Блоки інформації */
-@use "info.scss";
-
-/* Кола навичок */
-@use "skills.scss";
-
-/* Контентна частина */
-@use "content_section.scss";
-
 /* Інтерактивні елементи */
 @use "interactive.scss";
+
+/* Ліва частина */
+@use "../html/Components/sidebar/sidebar";
+
+/*  Права частина */
+@use "../html/Components/main/about";
+@use "../html/Components/main/education";
+@use "../html/Components/main/expirience";
+@use "../html/Components/main/expertise";

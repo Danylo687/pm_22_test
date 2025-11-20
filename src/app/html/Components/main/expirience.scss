@@ -1,0 +1,25 @@
+@use "../../../scss/variables" as *;
+.experience-block h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+
+.experience-block h3 { color: $gray-color; }
+
+.experience-block p {
+  color: $lite-gray-color;
+  font-size: 20px;
+  margin-bottom: 1.5em;
+}
+
+.experience-block-time {
+  background: $yellow-color;
+  color: $white-color;
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.experience-about { margin-top: -1em; }

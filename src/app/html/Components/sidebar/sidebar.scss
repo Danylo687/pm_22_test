@@ -1,7 +1,9 @@
+@use "../../../scss/variables" as *;
+@use "../../../scss/mixin" as *;
 /* Ліва частина */
-.photo-section { background-color: #ffca05; text-align: center; }
+.photo-section { background-color: $yellow-color; text-align: center; }
 .profile-img { margin: 20% 0 10%; width: 100%; }
-.about { background: #f1f1f1; padding: 12%; margin: 3% 0 4%; text-align: left; }
+.about { background: $white-color; padding: 12%; margin: 3% 0 4%; text-align: left; }
 .about h2, .content-section h2 { font-size: 48px; font-weight: 100; }
 .about p { font-size: 18px; line-height: 1.7; }
 .hobbies-img {
@@ -11,13 +13,11 @@
   padding: 10px;
   overflow: visible;
   width: 4em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include center-flex;
 }
 .hobbies-img svg { width: 100%; height: 100%; }
 
-// Приховуємо відступ ліворуч на мобільних пристроях (менше 768px)
+// Приховує відступ ліворуч на вікнах менших за 768px
 @media (max-width: 767.98px) {
   .photo-section {
     margin-left: 0 !important;

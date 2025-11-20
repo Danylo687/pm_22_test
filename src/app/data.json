@@ -1,0 +1,20 @@
+{
+  "personal": {
+    "firstName": "JOHN",
+    "lastName": "ABIRAR"
+  },
+  "jobs": [
+    {
+      "date": "Present",
+      "title": "Enter Job Position Here",
+      "company": "Company / Location",
+      "description": "Lorem ipsum dolor sit amet, this is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore"
+    },
+    {
+      "date": "2017–2019",
+      "title": "Enter Job Position Here",
+      "company": "Company / Location",
+      "description": "Lorem ipsum dolor sit amet, this is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore"
+    }
+  ]
+}

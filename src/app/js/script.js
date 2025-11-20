@@ -1,9 +1,34 @@
-// Переконуємося, що DOM завантажено, перш ніж запускати скрипти
+// Перевірка що DOM завантажено перш ніж запускати скрипти
 document.addEventListener('DOMContentLoaded', () => {
 
-    /**
-     * ЗАВДАННЯ 1: Встановлення повного імені
-     */
+
+    // ЗАВДАННЯ 1 (ЛР4): Перемикання видимості блоків (Toggle)
+    function initializeToggles() {
+        const headers = document.querySelectorAll('.toggle-header');
+
+        headers.forEach(header => {
+            // Знаходимо контент (наступний елемент) та стрілку
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.toggle-arrow');
+
+            if (!content || !arrow) return;
+
+            // Встановлює початковий стан (закрито)
+            content.classList.add('collapsed');
+            arrow.classList.add('rotated');
+
+            // Додаємо обробник події click
+            header.addEventListener('click', () => {
+                // Перемикаємо клас видимості контенту
+                content.classList.toggle('collapsed');
+                // Перемикаємо клас для обертання стрілки
+                arrow.classList.toggle('rotated');
+            });
+        });
+    }
+
+
+    // ЗАВДАННЯ 2 (ЛР4): Встановлення повного імені
     function setFullName(firstName, lastName, elementId) {
         const nameElement = document.getElementById(elementId);
         if (nameElement) {
@@ -12,36 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Виклик функції для Завдання 1
-    setFullName("JOHN", "ABIRAR", "personName");
 
-    // -----------------------------------------------------------------
-
-    /**
-     * ЗАВДАННЯ 3: Генерація контенту з масиву
-     * (Виконуємо до Завдання 2, оскільки воно створює контент, який Завдання 2 буде приховувати)
-     */
-    const experienceData = [
-        {
-            date: "Present",
-            title: "Enter Job Position Here",
-            company: "Company / Location",
-            description: "Lorem ipsum dolor sit amet, this is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore"
-        },
-        {
-            date: "2017–2019",
-            title: "Enter Job Position Here",
-            company: "Company / Location",
-            description: "Lorem ipsum dolor sit amet, this is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore"
-        }
-    ];
-
+    // ЗАВДАННЯ 3 (ЛР4): Генерація контенту з масиву
     function generateExperience(data) {
         const container = document.getElementById('experience-container');
         if (!container) return;
 
         // Очищення контейнера перед вставкою
         container.innerHTML = '';
+
+        // Перевірка, чи масив jobs порожній або не існує
+        if (!data || data.length === 0) {
+            // Виводимо повідомлення, якщо досвіду немає
+            container.innerHTML = `
+            <p style="text-align: center; color: #555555; font-size: 2em; padding: 20px;">
+                No work experience
+            </p>
+        `;
+            return; // Завершуємо виконання функції
+        }
 
         // Генерація HTML та вставка
         data.forEach(job => {
@@ -56,38 +70,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Виклик функції для Завдання 3
-    generateExperience(experienceData);
-
-    // -----------------------------------------------------------------
 
     /**
-     * ЗАВДАННЯ 2: Перемикання видимості блоків (Toggle)
+     * =================================================================
+     * ЗАВДАННЯ 5 (ЛР5): Асинхронне завантаження даних (AJAX / Fetch)
+     * =================================================================
      */
-    function initializeToggles() {
-        const headers = document.querySelectorAll('.toggle-header');
 
-        headers.forEach(header => {
-            // Знаходимо контент (наступний елемент) та стрілку
-            const content = header.nextElementSibling;
-            const arrow = header.querySelector('.toggle-arrow');
+    // Функція для завантаження та обробки даних з data.json
+    async function loadDataAndRender() {
+        try {
+            // 1. Виконує запит до data.json
+            const response = await fetch('data.json');
 
-            if (!content || !arrow) return;
+            // Перевірка чи запит успішний
+            if (!response.ok) {
+                throw new Error(`Помилка HTTP: ${response.status}`);
+            }
 
-            // // Встановлюємо початковий стан (закрито)
-            // content.classList.add('collapsed');
-            // arrow.classList.add('rotated');
+            // 2. Перетворює відповідь на об'єкт Json
+            const data = await response.json();
 
-            // Додаємо обробник події click
-            header.addEventListener('click', () => {
-                // Перемикаємо клас видимості контенту
-                content.classList.toggle('collapsed');
-                // Перемикаємо клас для обертання стрілки
-                arrow.classList.toggle('rotated');
-            });
-        });
+            // 3. Замінюємо захардкоджені значення (Завдання 5.3)
+
+            //  3.1. Підстановка повного імені
+            if (data.personal) {
+                setFullName(data.personal.firstName, data.personal.lastName, "personName");
+            }
+
+            //  3.2. Побудова списку досвіду
+            if (data.jobs) {
+                generateExperience(data.jobs);
+            }
+
+        } catch (error) {
+            //  4. Обробка помилок
+            console.error('Не вдалося завантажити дані:', error);
+
+            // Відображає службове повідомлення на сторінці
+            const container = document.getElementById('experience-container');
+            if (container) {
+                container.innerHTML = '<p style="color: red; text-align: center;">Не вдалося завантажити дані. </p>';
+            }
+        }
     }
 
-    // Виклик функції для Завдання 2
+    // =================================================================
+    // ЗАПУСК СКРИПТІВ
+    // =================================================================
+
+    // 1. Ініціалізація перемикачі (ЛР4)
     initializeToggles();
+
+    // 2. Завантаження та підгонка/вставка динамічних даних (ЛР5)
+    loadDataAndRender();
 });
