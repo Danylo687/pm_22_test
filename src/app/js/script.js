@@ -1,8 +1,6 @@
-// Перевірка що DOM завантажено перш ніж запускати скрипти
 document.addEventListener('DOMContentLoaded', () => {
 
-
-    // ЗАВДАННЯ 1 (ЛР4): Перемикання видимості блоків (Toggle)
+    // Перемикання видимості блоків Toggle
     function initializeToggles() {
         const headers = document.querySelectorAll('.toggle-header');
 
@@ -13,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!content || !arrow) return;
 
-            // Встановлює початковий стан (закрито)
+            // Встановлює початковий стан закрито
             content.classList.add('collapsed');
             arrow.classList.add('rotated');
 
@@ -28,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ЗАВДАННЯ 2 (ЛР4): Встановлення повного імені
+    // Встановлення повного імені
     function setFullName(firstName, lastName, elementId) {
         const nameElement = document.getElementById(elementId);
         if (nameElement) {
@@ -38,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ЗАВДАННЯ 3 (ЛР4): Генерація контенту з масиву
+    // Генерація контенту з масиву
     function generateExperience(data) {
         const container = document.getElementById('experience-container');
         if (!container) return;
@@ -70,17 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    /**
-     * =================================================================
-     * ЗАВДАННЯ 5 (ЛР5): Асинхронне завантаження даних (AJAX / Fetch)
-     * =================================================================
-     */
-
     // Функція для завантаження та обробки даних з data.json
     async function loadDataAndRender() {
         try {
-            // 1. Виконує запит до data.json
+            // Виконує запит до data.json
             const response = await fetch('data.json');
 
             // Перевірка чи запит успішний
@@ -88,23 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Помилка HTTP: ${response.status}`);
             }
 
-            // 2. Перетворює відповідь на об'єкт Json
+            // Перетворює відповідь на об'єкт Json
             const data = await response.json();
 
-            // 3. Замінюємо захардкоджені значення (Завдання 5.3)
+            // Замінюємо захардкоджені значення
 
-            //  3.1. Підстановка повного імені
+            // Підстановка повного імені
             if (data.personal) {
                 setFullName(data.personal.firstName, data.personal.lastName, "personName");
             }
 
-            //  3.2. Побудова списку досвіду
+            // Побудова списку досвіду
             if (data.jobs) {
                 generateExperience(data.jobs);
             }
 
         } catch (error) {
-            //  4. Обробка помилок
+            // Обробка помилок
             console.error('Не вдалося завантажити дані:', error);
 
             // Відображає службове повідомлення на сторінці
@@ -115,13 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // =================================================================
-    // ЗАПУСК СКРИПТІВ
-    // =================================================================
-
-    // 1. Ініціалізація перемикачі (ЛР4)
+    // Запуск скриптів
+    // Ініціалізація перемикачів
     initializeToggles();
-
-    // 2. Завантаження та підгонка/вставка динамічних даних (ЛР5)
+    // Завантаження та підгонка і вставка динамічних даних
     loadDataAndRender();
+
 });
